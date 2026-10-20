@@ -37,10 +37,26 @@ def filter_users_by_email(email):
 
 
 if __name__ == "__main__":
-	filter_option = input("What would you like to filter by? (Currently, only 'name' is supported): ").strip().lower()
+    filter_option = input(
+        "What would you like to filter by? (name, email, age): "
+    ).strip().lower()
 
-	if filter_option == "name":
-		name_to_search = input("Enter a name to filter users: ").strip()
-		filter_users_by_name(name_to_search)
-	else:
-		print("Filtering by that option is not yet supported.")
+    if filter_option == "name":
+        name = input("Enter a name: ").strip()
+        filter_users_by_name(name)
+
+    elif filter_option == "email":
+        email = input("Enter an email: ").strip()
+        filter_users_by_email(email)
+
+    elif filter_option == "age":
+        age_input = input("Enter an age: ").strip()
+
+        try:
+            age = int(age_input)
+            filter_users_by_age(age)
+        except ValueError:
+            print("Invalid age. Please enter a whole number.")
+
+    else:
+        print("Invalid option. Please choose name, email, or age.")
